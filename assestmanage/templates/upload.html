@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/upload/css/demo.css">
+</head>
+    <!--遮罩-->
+    <div class="overlay"></div>
+    <!--模态框-->
+    <div id="modal" class="dropbox">
+        <div class="items-container">
+            <div id="close" style="cursor:pointer;float: right;width:20px">
+                <span class="css-close"></span>
+            </div>
+            <div>
+                <p class="head"><b>拖拽文件至此</b></p>
+                <div class="content" id="content">
+                    <table class="table">
+                        <tbody class="tbody"></tbody>
+                    </table>
+                </div>
+                <div class="footer">
+                    <button class="btn" onclick="upload()">开始上传</button>
+                </div>
+				<a href='#' onclick='clearAll()' style='position:absolute;bottom:10px;right:30px;color: #e4393c'>清空所有</a>
+            </div>
+        </div>
+    </div>
+    <!--页面内容-->
+    <br><h2>文件上传</h2></br></div>
+<div><p style="font-size: 18px;text-indent:38px;margin-top: 0;margin-bottom: 0"><span style="font-size: 24px;font-weight: bold">·</span>&nbsp;&nbsp;请下载模板文件并使用模板文件上传</p></div>
+<div><p style="font-size: 18px;text-indent:38px;margin-top: 0;margin-bottom: 0"><span style="font-size: 24px;font-weight: bold">·</span>&nbsp;&nbsp;请按照模板表头填写数据，请勿擅自追加不相关的内容</p></div>
+<div><p style="font-size: 18px;text-indent:38px;margin-top: 0;margin-bottom: 0"><span style="font-size: 24px;font-weight: bold">·</span>&nbsp;&nbsp;支持文件的批量上传</p></div>
+<div><p style="font-size: 18px;text-indent:38px;margin-top: 0;margin-bottom: 0"><span style="font-size: 24px;font-weight: bold">·</span>&nbsp;&nbsp;如要批量上传文件，文件的命名请以原模板文件名为开头，如drugs01</p></div>
+    <div style="margin-top:10vh;text-align: center;">
+        <div>
+        <button style="margin-left: -80px" class="btn" onclick="showModal()">点击上传</button>
+        </div>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        <div>
+            <input style="font-size: 15px;" type="file" name="_f" id="_f" />
+        </div>
+    </div>
+    <!--嵌入脚本-->
+    <script src="/static/upload/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script  src="/static/upload/js/demo.js" type="text/javascript"></script>
+</body>
+</html>

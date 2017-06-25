@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+{% include 'navi.html' %}
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="/static/navigation/js/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="left" style="float:left;padding-left: 23%;  width:30%;  height:400px;"></div>
+    <div id="right" style="float:right;padding-right: 13%;  width:30%; height:400px;"></div>
+    <div id="left2" style="float:left;padding-left: 28%;  width:60%;  height:450px;"></div>
+    <input type="hidden" value="{{ date }}" id="dateInit">
+    <input type="hidden" value="{{ data }}" id="dataInit">
+    <input type="hidden" value="{{ data_gg }}" id="ggInit">
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('left'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: ''
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    <script>
+    var myChart = echarts.init(document.getElementById('right'));
+    option = {
+    title : {
+        text: '',
+        subtext: '',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+    },
+    series : [
+        {
+            name: '访问来源',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+var ggInit = {{ data_gg|safe }};
+{#var a = ggInit.replace('[', '').replace(']', '')#}
+{#    var b = JSON.parse(ggInit)#}
+    console.log(ggInit);
+    option.series[0].data = ggInit;
+    myChart.setOption(option);
+    </script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('left2'));
+
+option = {
+   title: {
+       text: "",
+       x: "center"
+   },
+   tooltip: {
+       trigger: "item",
+       formatter: "{a} <br/>{b} : {c}"
+   },
+   legend: {
+       x: 'left',
+       data: ["登陆次数"]
+   },
+   xAxis: [
+       {
+           type: "category",
+           name: "x",
+           splitLine: {show: false},
+           data: []
+       }
+   ],
+   yAxis: [
+       {
+           type: "log",
+           name: "y"
+       }
+   ],
+    toolbox: {
+       show: true,
+       feature: {
+           mark: {
+               show: true
+           },
+           dataView: {
+               show: true,
+               readOnly: true
+           },
+           restore: {
+               show: true
+           },
+           saveAsImage: {
+               show: true
+           }
+       }
+   },
+   calculable: true,
+   series: [
+       {
+           name: "登陆次数",
+           type: "line",
+           data: []
+
+       }
+   ]
+};
+var dateInit = $('#dateInit').val();
+option.xAxis[0].data = {{ date|safe }};
+var dataInit = $('#dataInit').val();
+option.series[0].data = {{ data|safe }};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+    <head lang="en">
+    <meta charset="utf-8">
+<TITLE>选择下拉菜单</TITLE>
+<meta http-equiv="Content-Type"content="text/html; charset=gb2312">
+<META NAME="Description"CONTENT="Power by hill">
+    </head>
+</HEAD>
+<BODY>
+<form method="post"name="myform">
+<table border="0"width="300">
+<tr>
+<td width="40%">
+<select style="WIDTH:100%"multiple name="list1"size="12"ondblclick="moveOption(document.myform.list1, document.myform.list2)">
+<option value="北京">北京</option>
+<option value="上海">上海</option>
+<option value="山东">山东</option>
+<option value="安徽">安徽</option>
+<option value="重庆">重庆</option>
+<option value="福建">福建</option>
+<option value="甘肃">甘肃</option>
+<option value="广东">广东</option>
+<option value="广西">广西</option>
+<option value="贵州">贵州</option>
+<option value="海南">海南</option>
+<option value="河北">河北</option>
+<option value="黑龙江">黑龙江</option>
+</select>
+</td>
+<td width="20%"align="center">
+<input type="button"value="右移"onclick="moveOption(document.myform.list1, document.myform.list2)"><br/>
+<br/>
+<input type="button"value="左移"onclick="moveOption(document.myform.list2, document.myform.list1)">
+</td>
+<td width="40%">
+<select style="WIDTH:100%"multiple name="list2"size="12"ondblclick="moveOption(document.myform.list2, document.myform.list1)">
+</select>
+</td>
+</tr>
+</table>
+值：<input type="text"name="city"size="40">
+</form>
+<script language="JavaScript">
+<!--
+function moveOption(e1, e2){
+try{
+for(var i=0;i<e1.options.length;i++){
+if(e1.options[i].selected){
+var e = e1.options[i];
+e2.options.add(new Option(e.text, e.value));
+e1.remove(i);
+i=i-1
+}
+}
+document.myform.city.value=getvalue(document.myform.list2);
+}
+catch(e){}
+}
+function getvalue(geto){
+var allvalue ="";
+for(var i=0;i<geto.options.length;i++){
+allvalue +=geto.options[i].value +",";
+}
+return allvalue;
+}
+function changepos(obj,index)
+{
+if(index==-1){
+if (obj.selectedIndex>0){
+obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex-1))
+}
+}
+else if(index==1){
+if (obj.selectedIndex<obj.options.length-1){
+obj.options(obj.selectedIndex).swapNode(obj.options(obj.selectedIndex+1))
+}
+}
+}
+//-->
+</script>
+</BODY>
+</HTML>
